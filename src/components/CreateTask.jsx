@@ -1,9 +1,9 @@
+import { useId, useRef } from "react";
 import useTasks from "@/hooks/useTasks";
-import getTasks from "@/services/getTasks";
-import { useRef } from "react";
 import { SubmitIcon } from "./Icons";
 
 const CreateTask = () => {
+  const createTaskInput = useId();
   const { handleCreateTask } = useTasks();
   const inputRef = useRef(null);
 
@@ -16,13 +16,17 @@ const CreateTask = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" py-1 px-2">
-      <label htmlFor="task-input" className="flex justify-between">
+    <form
+      onSubmit={handleSubmit}
+      className="py-1 px-2 border-b-2 border-b-gray-600"
+    >
+      <label htmlFor={createTaskInput} className="flex justify-between">
         <input
           ref={inputRef}
-          id="task-input"
+          id={createTaskInput}
           type="text"
           placeholder="Learn javascript"
+          autoComplete="off"
           className="outline-none"
         />
         <button onClick={handleSubmit}>
