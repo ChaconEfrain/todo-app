@@ -1,13 +1,13 @@
 const { URL } = require("@/constants");
 
-const updateTask = async (id, task) => {
+const updateTask = async (id, task, completed) => {
   try {
     const res = await fetch(`${URL}/task`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, task }),
+      body: JSON.stringify({ id, task, completed }),
     });
     const updatedTask = await res.json();
     return updatedTask;
