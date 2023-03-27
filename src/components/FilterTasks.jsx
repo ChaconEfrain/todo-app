@@ -1,12 +1,14 @@
 import { FILTERS } from "@/constants";
 import useTasks from "@/hooks/useTasks";
-import React from "react";
+import React, { useState } from "react";
 
 const FilterTasks = () => {
   const { filterTasks } = useTasks();
+  const [activeFilter, setActiveFilter] = useState("All");
 
   const handleFilter = (filterOption) => {
     filterTasks(filterOption);
+    setActiveFilter(filterOption);
   };
 
   return (
@@ -17,7 +19,9 @@ const FilterTasks = () => {
           <button
             key={filterOption}
             onClick={() => handleFilter(filterOption)}
-            className="bg-blue-200 px-3 hover:bg-blue-600 transition"
+            className={`bg-blue-200 px-3 hover:bg-blue-600 transition ${
+              activeFilter === filterOption && "bg-blue-600"
+            }`}
           >
             {filterOption}
           </button>
